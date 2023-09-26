@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+
+{% block body-content %}
+<div class="container">
+	<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Mobile Number</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for user in user_list %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      {% if user.image %}
+        <td><img src="{{ user.image.url }}"> </td>
+      {% else %}
+        <td>No Image Uploaded</td>
+      {% endif %}
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.mobile_number }}</td>
+      <td><a href="{% url 'user_edit' user.id %}">Edit</a> </td>
+      <td><a href="{% url 'user_delete' user.id %}">Delete</a> </td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+</table>
+</div>
+{% endblock body-content %}

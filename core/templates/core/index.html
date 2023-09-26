@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block body-content %}
+<div class="container">
+
+	{% if request.user.is_authenticated %}
+		<p>Hi {{request.user.email}},</p> <br />
+		<a href="{% url 'user_logout' %}">logout</a>
+	{% else %}
+		<a href="{% url 'register' %}">Registration Form</a><br />
+		<a href="{% url 'user_login' %}">Login Form</a>
+	{% endif %}
+
+	<p><a href="{% url 'user_list' %}">User List</a> </p>
+</div>
+{% endblock body-content %}
